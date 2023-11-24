@@ -4,3 +4,6 @@ pandas
 regex
 fuzzywuzzy
 python-Levenshtein
+scikit-learn
+threading
+tkinter

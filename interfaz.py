@@ -7,7 +7,7 @@ from tkinter import scrolledtext
 from tkinter import filedialog
 import threading
 import sys
-
+import time
 
 class TextRedirector(object):
     def __init__(self, widget, tag="stdout"):
@@ -138,22 +138,27 @@ class Interfaz:
         print("\n\n")
         print("Archivo de excel cargado con exito")
         print("\n\n")
+        print('Puede iniciar el entrenamiento de la IA, esto puede casuar que la apliacion se vuelva lenta o deje de responder, porfavor espere, es normal que suceda')
+
+        time.sleep(1)
         
         
         self.repairman=Repairman(self.df_a, self.CIE_10_DATA)
-        self.repair_button.config(state=tk.NORMAL)
+        #self.repair_button.config(state=tk.NORMAL)
         self.train_IA.config(state=tk.NORMAL)
 
     
     def Do_train_IA(self):
-        load_thread6 = threading.Thread(target=self._train_IA)
-        # Iniciar el hilo
-        load_thread6.start()
+        print('Iniciando entrenamiento de la IA, esto puede casuar que la apliacion se vuelva lenta o deje de responder, porfavor espere, es normal que pase...')
+        
+        # load_thread6 = threading.Thread(target=self._train_IA)
+        # # Iniciar el hilo
+        # load_thread6.start()
 
 
     def _train_IA(self):
+        
             # Comenzar a comprobar la cola de mensajes
-        print('Iniciando entrenamiento de la IA, esto puede casuar que la apliacion se vuelva lenta o deje de responder, porfavor espere, es normal que pase...')
         self.repairman.train()
         self.repair_button.config(state=tk.NORMAL)
     def _load_CIE_by_file_button(self):
@@ -224,5 +229,3 @@ class Interfaz:
 
 
 
-
-app = Interfaz()
